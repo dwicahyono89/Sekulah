@@ -3,681 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengamatan & Tindak Lanjut ABK \u2014 Multi Murid</title>
+<title>Formulir Identifikasi Awal Peserta Didik</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#F4F6F5; --card:#FFFFFF; --ink:#232B27; --ink-soft:#5B6862; --ink-faint:#8B9590;
     --teal:#2F6F62; --teal-light:#E3EEEA; --teal-dark:#1F4D43;
     --amber:#C97B3D; --amber-light:#FBEEE2;
     --brick:#A8472F; --brick-light:#FBE9E4;
-    --sage:#5E8C5A; --sage-light:#E9F1E6;
-    --blue:#3E5F82; --blue-light:#E3ECF5;
     --border:#DDE3E0; --radius:14px;
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;padding:28px 16px 80px;}
-  .wrap{max-width:840px;margin:0 auto;}
-  header.top{margin-bottom:20px;}
-  .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:6px;}
-  h1{font-family:'Fraunces',serif;font-weight:600;font-size:28px;margin:0 0 6px;color:var(--ink);letter-spacing:-0.01em;}
-  .sub{color:var(--ink-soft);font-size:14px;margin:0;}
-  .save-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-faint);margin-top:12px;}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);transition:background .3s;}
-  .dot.saving{background:var(--amber);}
-  .shared-note{font-size:12px;color:var(--blue);background:var(--blue-light);display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;margin-top:8px;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;padding:18px 14px 60px;}
+  .wrap{max-width:560px;margin:0 auto;}
+  header.top{margin-bottom:18px;text-align:center;}
+  .eyebrow{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:6px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:23px;margin:0 0 8px;color:var(--ink);}
+  .sub{color:var(--ink-soft);font-size:13.5px;margin:0;}
 
-  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;}
-  .card h2{font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin:0 0 4px;color:var(--ink);}
-  .card .hint{font-size:12.5px;color:var(--ink-faint);margin:0 0 14px;}
-
-  .toolbar-row{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;}
-  details.manage{margin-top:10px;}
-  details.manage summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--teal-dark);padding:4px 0;}
-  details.manage[open] summary{margin-bottom:8px;}
-
-  .student-bar{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
-  .student-bar .field{flex:1;min-width:200px;margin-bottom:0;}
-  .hidden{display:none !important;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;margin-bottom:14px;}
+  .card h2{font-family:'Fraunces',serif;font-size:16.5px;font-weight:600;margin:0 0 4px;color:var(--teal-dark);}
+  .card .hint{font-size:12px;color:var(--ink-faint);margin:0 0 14px;}
 
   label{font-size:12.5px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:5px;}
-  input[type=text],input[type=date],textarea,select{
-    width:100%;border:1px solid var(--border);border-radius:9px;padding:9px 11px;
-    font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);background:#FBFCFB;
+  input[type=text],input[type=tel],input[type=number],input[type=date],textarea{
+    width:100%;border:1px solid var(--border);border-radius:9px;padding:10px 11px;
+    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);background:#FBFCFB;
   }
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal);}
-  textarea{resize:vertical;min-height:50px;}
-  .field{margin-bottom:12px;}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
-  @media (max-width:560px){ .grid2,.grid3{grid-template-columns:1fr;} }
+  input:focus,textarea:focus{outline:none;border-color:var(--teal);}
+  textarea{resize:vertical;min-height:60px;}
+  .field{margin-bottom:13px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 
-  .btn{border:none;border-radius:9px;padding:9px 16px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;white-space:nowrap;}
-  .btn:hover{opacity:.88;}
-  .btn-teal{background:var(--teal);color:#fff;}
+  .likert-block{margin-bottom:16px;}
+  .likert-block:last-child{margin-bottom:0;}
+  .likert-q{font-size:14px;margin:0 0 8px;font-weight:500;}
+  .likert-options{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+  .likert-options label{
+    border:1px solid var(--border);border-radius:9px;padding:9px 6px;text-align:center;
+    font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;background:#FBFCFB;user-select:none;
+  }
+  .likert-options label.selected{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .likert-options input{position:absolute;opacity:0;pointer-events:none;}
+  .kategori-label{font-size:13px;font-weight:700;color:var(--teal-dark);margin:18px 0 10px;text-transform:uppercase;letter-spacing:.03em;}
+  .kategori-label:first-child{margin-top:0;}
+
+  .check-row{display:flex;align-items:flex-start;gap:9px;padding:8px 2px;font-size:14px;}
+  .check-row input{margin-top:3px;accent-color:var(--teal);width:17px;height:17px;flex:none;}
+  .sub-input{margin:4px 0 4px 26px;}
+
+  .btn{border:none;border-radius:10px;padding:13px 18px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:'Inter',sans-serif;width:100%;margin-bottom:10px;}
+  .btn-wa{background:#25D366;color:#fff;}
   .btn-ghost{background:var(--teal-light);color:var(--teal-dark);}
-  .btn-amber{background:var(--amber-light);color:var(--amber);}
-  .btn-brick{background:var(--brick-light);color:var(--brick);}
-  .btn-sm{padding:5px 10px;font-size:12px;}
-
-  nav.tabs{display:flex;gap:6px;background:var(--card);padding:5px;border-radius:999px;border:1px solid var(--border);margin-bottom:16px;overflow-x:auto;}
-  nav.tabs button{flex:1;border:none;background:transparent;padding:9px 10px;border-radius:999px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--ink-soft);cursor:pointer;white-space:nowrap;}
-  nav.tabs button.active{background:var(--teal);color:#fff;}
-  nav.tabs button:not(.active):hover{background:var(--teal-light);color:var(--teal-dark);}
-
-  .panel{display:none;}
-  .panel.active{display:block;animation:fade .2s ease;}
-  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-
-  .list-row{display:flex;align-items:flex-start;gap:10px;background:#FBFCFB;border:1px solid var(--border);border-radius:9px;padding:9px 10px;margin-bottom:8px;}
-  .list-row input[type=checkbox]{margin-top:3px;accent-color:var(--teal);width:16px;height:16px;flex:none;}
-  .list-row span{flex:1;font-size:14px;}
-  .list-row button{border:none;background:none;color:var(--ink-faint);cursor:pointer;font-size:12.5px;}
-  .list-row button:hover{color:var(--brick);}
-  .add-row{display:flex;gap:8px;margin-top:8px;}
-  .add-row input,.add-row select{flex:1;}
-
-  .goal-card{border:1px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:12px;border-left:4px solid var(--teal);position:relative;background:#FBFCFB;}
-  .goal-card .del-link{position:absolute;top:10px;right:12px;}
-  .status-row{display:flex;align-items:center;gap:10px;margin-top:4px;flex-wrap:wrap;}
-  .status-row select{width:auto;flex:none;}
-  .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.03em;}
-  .badge.belum{background:#EEEFEC;color:var(--ink-faint);}
-  .badge.berjalan{background:var(--amber-light);color:var(--amber);}
-  .badge.kemajuan{background:var(--blue-light);color:var(--blue);}
-  .badge.tercapai{background:var(--sage-light);color:var(--sage);}
-
-  .log-entry{background:#FBFCFB;border:1px solid var(--border);border-radius:11px;padding:13px 15px;margin-bottom:9px;}
-  .log-entry-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
-  .log-meta{font-weight:700;font-size:13px;color:var(--teal-dark);}
-  .log-meta small{display:block;font-weight:500;color:var(--ink-faint);font-size:11.5px;margin-top:2px;}
-  .log-entry dl{margin:0;font-size:13.5px;}
-  .log-entry dt{font-weight:600;color:var(--ink-soft);margin-top:5px;}
-  .log-entry dd{margin:2px 0 0;color:var(--ink);}
-  .empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:26px 10px;border:1px dashed var(--border);border-radius:11px;}
-  .del-link{border:none;background:none;color:var(--ink-faint);cursor:pointer;font-size:12px;}
-  .del-link:hover{color:var(--brick);}
-  .safety-note{background:var(--brick-light);border:1px solid #EFC8BC;border-radius:11px;padding:13px 15px;font-size:13px;color:#7A3120;margin-bottom:14px;display:flex;gap:9px;}
-  .chart-wrap{position:relative;height:280px;margin-top:6px;}
-  .legend-note{font-size:12px;color:var(--ink-faint);margin-top:10px;}
-  .no-student{text-align:center;padding:40px 20px;color:var(--ink-faint);}
+  .error-text{color:var(--brick);font-size:12.5px;margin-top:4px;display:none;}
+  .status-msg{font-size:13px;text-align:center;padding:10px;border-radius:9px;margin-top:6px;display:none;}
+  .status-msg.ok{background:var(--teal-light);color:var(--teal-dark);display:block;}
+  .privacy-note{font-size:11.5px;color:var(--ink-faint);text-align:center;margin-top:18px;line-height:1.6;}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="top">
-    <div class="eyebrow">Lembar guru \u2014 dapat diisi bersama</div>
-    <h1>Pengamatan & tindak lanjut ABK</h1>
-    <p class="sub">Mendata banyak murid sekaligus, bisa diisi oleh lebih dari satu guru, dengan grafik progres dan ekspor laporan.</p>
-    <div class="save-pill"><span class="dot" id="saveDot"></span><span id="saveText">Memuat...</span></div>
-    <div><span class="shared-note">\uD83D\uDC65 Data murid & log dibagikan dengan guru lain yang membuka lembar ini</span></div>
+    <div class="eyebrow">Diisi oleh orang tua / wali murid</div>
+    <h1>Formulir Identifikasi Awal Peserta Didik</h1>
+    <p class="sub">UPT SD Negeri Tumpang 03 &middot; Tahun Ajaran 2026/2027</p>
   </header>
 
-  <section class="card">
-    <div class="toolbar-row">
-      <button class="btn btn-ghost" onclick="exportExcel()">\u2B07 Export ke Excel</button>
-    </div>
-    <details class="manage">
-      <summary>Kelola daftar guru pengamat</summary>
-      <div id="teacherList"></div>
-      <div class="add-row">
-        <input type="text" id="teacherBaru" placeholder="Nama guru baru...">
-        <button class="btn btn-teal btn-sm" onclick="addTeacher()">Tambah</button>
-      </div>
-    </details>
-  </section>
-
-  <section class="card">
-    <h2>Pilih murid</h2>
-    <p class="hint" id="studentCount">Belum ada murid.</p>
-    <div class="student-bar">
-      <div class="field">
-        <select id="studentSelect" onchange="onSelectStudent()"></select>
-      </div>
-      <button class="btn btn-teal" onclick="toggleAddStudent()">+ Murid baru</button>
-    </div>
-    <div id="addStudentForm" class="hidden" style="margin-top:14px;">
-      <div class="grid3">
-        <div class="field"><label>Nama / inisial murid</label><input type="text" id="ns-nama" placeholder="Contoh: R."></div>
-        <div class="field"><label>Kelas</label><input type="text" id="ns-kelas" placeholder="2"></div>
-        <div class="field"><label>Indikasi awal (opsional)</label><input type="text" id="ns-indikasi" placeholder="Contoh: kecenderungan ASD"></div>
-      </div>
-      <button class="btn btn-teal" onclick="saveNewStudent()">Simpan murid</button>
-      <button class="btn btn-ghost" onclick="toggleAddStudent()">Batal</button>
-    </div>
-  </section>
-
-  <div id="noStudentMsg" class="card no-student hidden">
-    Belum ada murid yang terdaftar. Klik <b>"+ Murid baru"</b> di atas untuk mulai mencatat.
+  <div class="card">
+    <p style="margin:0;font-size:13px;color:var(--ink-soft);">Mohon diisi sesuai kondisi anak sehari-hari secara jujur dan apa adanya. Formulir ini bukan untuk menilai, melainkan membantu guru memahami dan mendampingi anak dengan lebih tepat. Isian akan dikirim langsung ke WhatsApp Wali Kelas saat Anda menekan tombol kirim.</p>
   </div>
 
-  <div id="studentArea" class="hidden">
-    <nav class="tabs">
-      <button class="active" data-tab="profil">Profil & ciri</button>
-      <button data-tab="target">Target & strategi</button>
-      <button data-tab="log">Log observasi</button>
-      <button data-tab="grafik">Grafik progres</button>
-    </nav>
-
-    <section class="panel active" id="panel-profil">
-      <div class="card" id="profilCard"></div>
-      <div class="card">
-        <h2>Ciri-ciri awal yang teramati</h2>
-        <p class="hint">Bukan diagnosis \u2014 dasar observasi untuk pendampingan. Tambah atau hapus sesuai perkembangan.</p>
-        <div class="list-row hidden" id="ciriEmpty"></div>
-        <div id="ciriList"></div>
-        <div class="add-row">
-          <input type="text" id="ciriBaru" placeholder="Tambah ciri yang teramati...">
-          <button class="btn btn-teal btn-sm" onclick="addCiri()">Tambah</button>
-        </div>
-      </div>
-      <div class="card">
-        <button class="btn btn-brick" onclick="deleteStudent()">Hapus murid ini</button>
-      </div>
-    </section>
-
-    <section class="panel" id="panel-target">
-      <div class="safety-note">
-        <span>\u26A0</span>
-        <div><b>Prioritas keselamatan:</b> jika ditemukan perilaku yang berisiko terhadap keselamatan murid (melukai diri sendiri/orang lain), segera komunikasikan dengan orang tua dan pertimbangkan rujukan profesional, terlepas dari status target di bawah.</div>
-      </div>
-      <div id="goalsList"></div>
-      <div class="card">
-        <h2>Tambah target & strategi baru</h2>
-        <div class="field"><label>Domain / area target</label><input type="text" id="newGoalDomain" placeholder="Contoh: Komunikasi, Akademik - Membaca, Motorik..."></div>
-        <button class="btn btn-teal" onclick="addGoal()">Tambah target</button>
-      </div>
-    </section>
-
-    <section class="panel" id="panel-log">
-      <div class="card">
-        <h2>Tambah catatan observasi</h2>
-        <p class="hint">Isi singkat saja \u2014 yang penting konsisten, bukan panjang.</p>
-        <div class="grid3">
-          <div class="field"><label>Tanggal</label><input type="date" id="l-tanggal"></div>
-          <div class="field"><label>Guru pengamat</label><select id="l-guru"></select></div>
-          <div class="field"><label>Domain</label><select id="l-domain"></select></div>
-        </div>
-        <div class="field"><label>Hasil penanganan</label>
-          <select id="l-hasil">
-            <option>Berhasil</option><option>Sebagian berhasil</option><option>Belum berhasil</option><option>Hanya observasi</option>
-          </select>
-        </div>
-        <div class="field"><label>Situasi / pemicu</label><input type="text" id="l-situasi" placeholder="Apa yang terjadi sebelum kejadian"></div>
-        <div class="field"><label>Perilaku yang teramati</label><textarea id="l-perilaku"></textarea></div>
-        <div class="field"><label>Tindakan yang diambil</label><textarea id="l-tindakan"></textarea></div>
-        <div class="field"><label>Catatan tambahan (opsional)</label><textarea id="l-catatan"></textarea></div>
-        <button class="btn btn-teal" onclick="addLog()">Simpan catatan</button>
-      </div>
-      <div id="logList"></div>
-    </section>
-
-    <section class="panel" id="panel-grafik">
-      <div class="card">
-        <h2>Grafik progres dari waktu ke waktu</h2>
-        <p class="hint">Skor: 3 = Berhasil &middot; 2 = Sebagian berhasil &middot; 1 = Belum berhasil. Catatan "Hanya observasi" tidak diberi skor.</p>
-        <div class="field" style="max-width:260px;"><label>Filter domain</label><select id="chartDomainFilter" onchange="renderChart()"></select></div>
-        <div class="chart-wrap"><canvas id="progressChart"></canvas></div>
-        <div id="chartEmpty" class="empty hidden">Belum cukup data untuk menampilkan grafik. Tambahkan minimal 2 catatan observasi dengan hasil yang diberi skor.</div>
-      </div>
-    </section>
+  <div class="card">
+    <h2>I. Identitas</h2>
+    <div class="field"><label>Nama Peserta Didik *</label><input type="text" id="namaAnak" required></div>
+    <div class="grid2">
+      <div class="field"><label>Kelas</label><input type="text" id="kelas" placeholder="Contoh: 2"></div>
+      <div class="field"><label>Tanggal Lahir</label><input type="date" id="ttl"></div>
+    </div>
+    <div class="field"><label>Nama Orang Tua/Wali</label><input type="text" id="namaOrtu"></div>
+    <div class="field"><label>No. WhatsApp Orang Tua/Wali</label><input type="tel" id="noHpOrtu" placeholder="08xxxxxxxxxx"></div>
+    <div class="error-text" id="namaError">Nama peserta didik wajib diisi.</div>
   </div>
+
+  <div class="card">
+    <h2>II. Identifikasi Massa Tubuh (Status Gizi)</h2>
+    <div class="grid2">
+      <div class="field"><label>Tinggi Badan (cm)</label><input type="number" inputmode="decimal" id="tinggi"></div>
+      <div class="field"><label>Berat Badan (kg)</label><input type="number" inputmode="decimal" id="berat"></div>
+    </div>
+    <div class="field"><label>Lingkar Kepala (cm) &mdash; opsional</label><input type="number" inputmode="decimal" id="lingkarKepala"></div>
+    <div class="check-row"><input type="checkbox" id="alergiYa"><span>Anak memiliki alergi makanan tertentu</span></div>
+    <div class="sub-input"><input type="text" id="alergiDetail" placeholder="Sebutkan jenis alerginya..."></div>
+    <div class="check-row"><input type="checkbox" id="riwayatYa"><span>Anak memiliki riwayat penyakit/kondisi medis khusus</span></div>
+    <div class="sub-input"><input type="text" id="riwayatDetail" placeholder="Sebutkan kondisinya..."></div>
+    <div class="check-row"><input type="checkbox" id="sarapanRutin"><span>Anak rutin sarapan sebelum berangkat ke sekolah</span></div>
+  </div>
+
+  <div class="card">
+    <h2>III. Sosial-Emosional & Konsentrasi Belajar</h2>
+    <p class="hint">Pilih salah satu yang paling sesuai untuk setiap pernyataan.</p>
+    <div id="likertContainer"></div>
+  </div>
+
+  <div class="card">
+    <h2>IV. Bakat dan Minat</h2>
+    <label style="margin-bottom:8px;">Bidang yang paling disukai anak (boleh lebih dari satu)</label>
+    <div id="bidangContainer"></div>
+    <div class="field" style="margin-top:14px;"><label>Aktivitas yang paling sering dilakukan anak di waktu luang/di rumah</label><textarea id="aktivitas"></textarea></div>
+    <div class="field"><label>Prestasi/kejuaraan yang pernah diraih anak (jika ada)</label><textarea id="prestasi"></textarea></div>
+    <div class="field"><label>Cita-cita anak (jika pernah disampaikan)</label><input type="text" id="citaCita"></div>
+    <div class="field"><label>Harapan Bapak/Ibu terhadap pengembangan bakat & minat anak di sekolah</label><textarea id="harapan"></textarea></div>
+  </div>
+
+  <div class="card">
+    <button class="btn btn-wa" onclick="kirimWhatsApp()">\uD83D\uDCAC Kirim Jawaban via WhatsApp</button>
+    <button class="btn btn-ghost" onclick="salinTeks()">\uD83D\uDCCB Salin Ringkasan Jawaban</button>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+  <p class="privacy-note">Formulir ini berjalan langsung di perangkat Anda. Jawaban tidak disimpan di server mana pun &mdash; hanya dikirim langsung ke WhatsApp Wali Kelas saat Anda menekan tombol di atas.</p>
 
 </div>
 
 <script>
-const SHARED_KEY = 'abk-data-v1';
-const OLD_PERSONAL_KEY = 'catatan-pengamatan-abk-v1';
-const PERSONAL_GURU_KEY = 'guru-aktif-v1';
+// ====== GANTI NOMOR INI SEBELUM DIPUBLIKASIKAN ======
+// Format: kode negara 62 + nomor tanpa angka 0 di depan, tanpa spasi/tanda baca.
+// Contoh: 0812-3456-7890  ->  6281234567890
+const NOMOR_WA_GURU = "6281234567890"; // <-- GANTI dengan nomor WhatsApp Anda
 
-let data = { students: [], teachers: [], logs: [] };
-let activeStudentId = null;
-let chartInstance = null;
+const likertItems = [
+  { id:'q1', kategori:'A. Sosial', label:'Mudah berteman dengan teman sebaya', text:'Anak mudah berteman dengan teman sebaya' },
+  { id:'q2', kategori:'A. Sosial', label:'Lebih suka beraktivitas sendiri', text:'Anak lebih suka bermain/beraktivitas sendiri dibanding berkelompok' },
+  { id:'q3', kategori:'A. Sosial', label:'Mudah berbagi/bergiliran', text:'Anak mudah berbagi atau bergiliran dengan orang lain' },
+  { id:'q4', kategori:'A. Sosial', label:'Percaya diri di lingkungan baru', text:'Anak menunjukkan rasa percaya diri saat bertemu orang/lingkungan baru' },
+  { id:'q5', kategori:'B. Emosional', label:'Mudah marah/emosi meledak', text:'Anak mudah marah atau emosi meledak-ledak' },
+  { id:'q6', kategori:'B. Emosional', label:'Mudah cemas/khawatir', text:'Anak mudah cemas atau khawatir berlebihan' },
+  { id:'q7', kategori:'B. Emosional', label:'Bisa menenangkan diri sendiri', text:'Anak dapat menenangkan diri sendiri setelah marah/sedih' },
+  { id:'q8', kategori:'B. Emosional', label:'Suasana hati berubah cepat', text:'Anak menunjukkan perubahan suasana hati yang cepat dan tiba-tiba' },
+  { id:'q9', kategori:'C. Konsentrasi Belajar', label:'Bisa duduk tenang saat belajar', text:'Anak dapat duduk tenang saat belajar atau mengerjakan tugas' },
+  { id:'q10', kategori:'C. Konsentrasi Belajar', label:'Mudah terdistraksi saat belajar', text:'Anak mudah terdistraksi oleh suara/hal di sekitarnya saat belajar' },
+  { id:'q11', kategori:'C. Konsentrasi Belajar', label:'Menyelesaikan tugas hingga selesai', text:'Anak menyelesaikan tugas atau permainan yang sudah dimulai hingga selesai' },
+  { id:'q12', kategori:'C. Konsentrasi Belajar', label:'Butuh pengulangan instruksi', text:'Anak membutuhkan pengulangan instruksi agar memahami suatu tugas' },
+];
+const opsiLikert = ['Selalu','Sering','Kadang','Tidak Pernah'];
 
-function rid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
-function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function formatTanggal(d){ if(!d) return ''; const dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}); }
-function scoreOf(hasil){ return ({'Berhasil':3,'Sebagian berhasil':2,'Belum berhasil':1})[hasil] ?? null; }
+const bidangOptions = ['Olahraga','Seni musik (vokal/alat musik)','Seni rupa (menggambar/melukis/kerajinan)','Seni tari/drama','Membaca/menulis','Berhitung/logika','Teknologi/komputer'];
 
-// ---------- LOAD / SAVE / MIGRATE ----------
-
-async function loadData(){
-  document.getElementById('saveText').textContent = 'Memuat data...';
-  let loaded = null;
-  try{
-    const res = await window.storage.get(SHARED_KEY, true);
-    if (res) loaded = JSON.parse(res.value);
-  }catch(e){ loaded = null; }
-
-  if (!loaded){
-    let migratedStudent = null;
-    try{
-      const old = await window.storage.get(OLD_PERSONAL_KEY, false);
-      if (old){
-        const o = JSON.parse(old.value);
-        const sid = rid();
-        migratedStudent = {
-          id: sid,
-          nama: (o.profile && o.profile.nama) || 'Murid (dipindahkan)',
-          kelas: (o.profile && o.profile.kelas) || '',
-          tahun: (o.profile && o.profile.tahun) || '',
-          indikasi: 'Kecenderungan ASD (observasi awal)',
-          mulai: (o.profile && o.profile.mulai) || new Date().toISOString().slice(0,10),
-          ciri: (o.ciri || []).map(c => ({ text: c.text, checked: !!c.checked })),
-          goals: (o.goals || []).map(g => ({ id: rid(), domain: g.domain, target: g.target, strategi: g.strategi, status: g.status || 'belum' })),
-        };
-        loaded = {
-          students: [migratedStudent],
-          teachers: [ (o.profile && o.profile.guru) || 'Dwi Cahyono, S.Pd.' ],
-          logs: (o.logs || []).map(l => ({ id: rid(), studentId: sid, guru: (o.profile && o.profile.guru) || 'Dwi Cahyono, S.Pd.', domain: 'Umum',
-            tanggal: l.tanggal, situasi: l.situasi, perilaku: l.perilaku, tindakan: l.tindakan, catatan: l.catatan, hasil: l.hasil })),
-        };
-      }
-    }catch(e){ /* no old data, that's fine */ }
-
-    if (!loaded) loaded = { students: [], teachers: ['Dwi Cahyono, S.Pd.'], logs: [] };
-    data = loaded;
-    await saveData(true);
-  } else {
-    data = loaded;
-  }
-
-  if (data.students.length) activeStudentId = data.students[0].id;
-  let guruAktif = null;
-  try{ const g = await window.storage.get(PERSONAL_GURU_KEY, false); guruAktif = g ? g.value : null; }catch(e){}
-
-  renderAll(guruAktif);
-}
-
-let saveTimer = null;
-function saveData(immediate){
-  const dot = document.getElementById('saveDot');
-  const txtEl = document.getElementById('saveText');
-  dot.classList.add('saving'); txtEl.textContent = 'Menyimpan...';
-  const doSave = async () => {
-    try{
-      await window.storage.set(SHARED_KEY, JSON.stringify(data), true);
-      dot.classList.remove('saving'); txtEl.textContent = 'Tersimpan & dibagikan dengan guru lain';
-    }catch(e){
-      txtEl.textContent = 'Gagal menyimpan \u2014 coba lagi';
+function renderLikert(){
+  const wrap = document.getElementById('likertContainer');
+  let lastKategori = '';
+  likertItems.forEach(item => {
+    if (item.kategori !== lastKategori){
+      wrap.innerHTML += `<div class="kategori-label">${item.kategori}</div>`;
+      lastKategori = item.kategori;
     }
-  };
-  clearTimeout(saveTimer);
-  if (immediate) return doSave();
-  saveTimer = setTimeout(doSave, 400);
-}
-
-// Re-fetch the freshest shared copy, apply a mutation, then save.
-// Reduces the chance of two teachers overwriting each other's new entries.
-async function withFreshData(mutateFn){
-  try{
-    const res = await window.storage.get(SHARED_KEY, true);
-    if (res) data = JSON.parse(res.value);
-  }catch(e){ /* keep current in-memory data if fetch fails */ }
-  mutateFn(data);
-  saveData();
-}
-
-async function reloadFromServer(){
-  await loadData();
-}
-
-// ---------- TABS ----------
-
-document.querySelectorAll('nav.tabs button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
-    if (btn.dataset.tab === 'grafik') renderChart();
-  });
-});
-
-// ---------- TEACHERS ----------
-
-function renderTeacherList(){
-  const wrap = document.getElementById('teacherList');
-  wrap.innerHTML = '';
-  if (!data.teachers.length){ wrap.innerHTML = '<div class="empty">Belum ada guru terdaftar.</div>'; }
-  data.teachers.forEach((t,i)=>{
-    const row = document.createElement('div'); row.className = 'list-row';
-    row.innerHTML = `<span>${escapeHtml(t)}</span><button onclick="removeTeacher(${i})">Hapus</button>`;
-    wrap.appendChild(row);
-  });
-  const sel = document.getElementById('l-guru');
-  if (sel){
-    const current = sel.value;
-    sel.innerHTML = data.teachers.map(t=>`<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join('');
-    if (current && data.teachers.includes(current)) sel.value = current;
-  }
-}
-function addTeacher(){
-  const input = document.getElementById('teacherBaru');
-  const name = input.value.trim();
-  if (!name) return;
-  withFreshData(d => { if(!d.teachers.includes(name)) d.teachers.push(name); });
-  data.teachers.includes(name) || data.teachers.push(name);
-  input.value = '';
-  renderTeacherList();
-}
-function removeTeacher(i){
-  if (!confirm('Hapus guru ini dari daftar?')) return;
-  withFreshData(d => { d.teachers.splice(i,1); });
-  data.teachers.splice(i,1);
-  renderTeacherList();
-}
-
-// ---------- STUDENTS ----------
-
-function renderStudentSelector(){
-  const sel = document.getElementById('studentSelect');
-  const countEl = document.getElementById('studentCount');
-  countEl.textContent = data.students.length ? `${data.students.length} murid terdaftar.` : 'Belum ada murid.';
-  sel.innerHTML = data.students.map(s => `<option value="${s.id}">${escapeHtml(s.nama)}${s.kelas ? ' \u2014 Kelas '+escapeHtml(s.kelas) : ''}</option>`).join('');
-  if (activeStudentId) sel.value = activeStudentId;
-
-  const area = document.getElementById('studentArea');
-  const noMsg = document.getElementById('noStudentMsg');
-  if (!data.students.length){ area.classList.add('hidden'); noMsg.classList.remove('hidden'); }
-  else { area.classList.remove('hidden'); noMsg.classList.add('hidden'); }
-}
-
-function getActiveStudent(){ return data.students.find(s => s.id === activeStudentId); }
-
-function onSelectStudent(){
-  activeStudentId = document.getElementById('studentSelect').value;
-  renderStudentDetail();
-}
-
-function toggleAddStudent(){ document.getElementById('addStudentForm').classList.toggle('hidden'); }
-
-function saveNewStudent(){
-  const nama = document.getElementById('ns-nama').value.trim();
-  if (!nama){ alert('Nama murid wajib diisi.'); return; }
-  const kelas = document.getElementById('ns-kelas').value.trim();
-  const indikasi = document.getElementById('ns-indikasi').value.trim();
-  const newStudent = { id: rid(), nama, kelas, tahun: '', indikasi, mulai: new Date().toISOString().slice(0,10), ciri: [], goals: [] };
-  withFreshData(d => { d.students.push(newStudent); });
-  data.students.push(newStudent);
-  activeStudentId = newStudent.id;
-  document.getElementById('ns-nama').value = '';
-  document.getElementById('ns-kelas').value = '';
-  document.getElementById('ns-indikasi').value = '';
-  toggleAddStudent();
-  renderStudentSelector();
-  renderStudentDetail();
-}
-
-function deleteStudent(){
-  const s = getActiveStudent();
-  if (!s) return;
-  if (!confirm(`Hapus murid "${s.nama}" beserta semua catatannya? Tindakan ini tidak bisa dibatalkan.`)) return;
-  withFreshData(d => {
-    d.students = d.students.filter(x => x.id !== s.id);
-    d.logs = d.logs.filter(l => l.studentId !== s.id);
-  });
-  data.students = data.students.filter(x => x.id !== s.id);
-  data.logs = data.logs.filter(l => l.studentId !== s.id);
-  activeStudentId = data.students.length ? data.students[0].id : null;
-  renderStudentSelector();
-  renderStudentDetail();
-}
-
-function renderStudentDetail(){
-  const s = getActiveStudent();
-  if (!s) return;
-  renderProfileCard(s);
-  renderCiri(s);
-  renderGoals(s);
-  renderLogDomainOptions(s);
-  renderLogs(s);
-  renderChartDomainOptions(s);
-  renderChart();
-}
-
-// ---------- PROFILE ----------
-
-function renderProfileCard(s){
-  const el = document.getElementById('profilCard');
-  el.innerHTML = `
-    <h2>Identitas murid</h2>
-    <div class="grid3">
-      <div class="field"><label>Nama / inisial</label><input type="text" data-f="nama" value="${escapeHtml(s.nama)}"></div>
-      <div class="field"><label>Kelas</label><input type="text" data-f="kelas" value="${escapeHtml(s.kelas)}"></div>
-      <div class="field"><label>Tahun ajaran</label><input type="text" data-f="tahun" value="${escapeHtml(s.tahun)}"></div>
-    </div>
-    <div class="grid2">
-      <div class="field"><label>Indikasi awal kebutuhan khusus</label><input type="text" data-f="indikasi" value="${escapeHtml(s.indikasi)}"></div>
-      <div class="field"><label>Mulai diamati sejak</label><input type="date" data-f="mulai" value="${escapeHtml(s.mulai)}"></div>
-    </div>`;
-  el.querySelectorAll('input').forEach(inp=>{
-    inp.addEventListener('input', ()=>{ s[inp.dataset.f] = inp.value; saveData(); renderStudentSelector(); });
-  });
-}
-
-// ---------- CIRI ----------
-
-function renderCiri(s){
-  const list = document.getElementById('ciriList');
-  list.innerHTML = '';
-  if (!s.ciri.length){ list.innerHTML = '<div class="empty">Belum ada ciri yang dicatat.</div>'; return; }
-  s.ciri.forEach((c,i)=>{
-    const row = document.createElement('div'); row.className = 'list-row';
-    row.innerHTML = `<input type="checkbox" ${c.checked?'checked':''} onchange="toggleCiri(${i})">
-      <span>${escapeHtml(c.text)}</span><button onclick="removeCiri(${i})">Hapus</button>`;
-    list.appendChild(row);
-  });
-}
-function toggleCiri(i){ const s=getActiveStudent(); s.ciri[i].checked = !s.ciri[i].checked; saveData(); }
-function removeCiri(i){ const s=getActiveStudent(); s.ciri.splice(i,1); renderCiri(s); saveData(); }
-function addCiri(){
-  const s = getActiveStudent(); if (!s) return;
-  const input = document.getElementById('ciriBaru');
-  if (!input.value.trim()) return;
-  const item = { text: input.value.trim(), checked: true };
-  withFreshData(d => { const st = d.students.find(x=>x.id===s.id); if (st) st.ciri.push(item); });
-  s.ciri.push(item);
-  input.value = '';
-  renderCiri(s);
-}
-
-// ---------- GOALS ----------
-
-const statusLabel = { belum:'Belum dimulai', berjalan:'Berjalan', kemajuan:'Menunjukkan kemajuan', tercapai:'Tercapai' };
-
-function renderGoals(s){
-  const wrap = document.getElementById('goalsList');
-  wrap.innerHTML = '';
-  if (!s.goals.length){ wrap.innerHTML = '<div class="empty">Belum ada target. Tambahkan di bawah.</div>'; return; }
-  s.goals.forEach((g,i)=>{
-    const card = document.createElement('div'); card.className = 'goal-card';
-    card.innerHTML = `
-      <button class="del-link" onclick="removeGoal(${i})">Hapus</button>
-      <h2 style="font-size:15px;margin-bottom:10px;">${escapeHtml(g.domain)}</h2>
-      <div class="field"><label>Target</label><textarea data-i="${i}" data-f="target">${escapeHtml(g.target||'')}</textarea></div>
-      <div class="field"><label>Strategi</label><textarea data-i="${i}" data-f="strategi">${escapeHtml(g.strategi||'')}</textarea></div>
-      <div class="status-row">
-        <label style="margin:0">Status</label>
-        <select data-i="${i}" data-f="status">
-          ${Object.entries(statusLabel).map(([k,v])=>`<option value="${k}" ${g.status===k?'selected':''}>${v}</option>`).join('')}
-        </select>
-        <span class="badge ${g.status}">${statusLabel[g.status]}</span>
+    const block = document.createElement('div'); block.className = 'likert-block';
+    block.innerHTML = `<p class="likert-q">${item.text}</p>
+      <div class="likert-options">
+        ${opsiLikert.map(opt => `<label data-name="${item.id}"><input type="radio" name="${item.id}" value="${opt}">${opt}</label>`).join('')}
       </div>`;
-    wrap.appendChild(card);
+    wrap.appendChild(block);
   });
-  wrap.querySelectorAll('textarea').forEach(el=>{
-    el.addEventListener('input', ()=>{ s.goals[el.dataset.i][el.dataset.f] = el.value; saveData(); });
-  });
-  wrap.querySelectorAll('select').forEach(el=>{
-    el.addEventListener('change', ()=>{ s.goals[el.dataset.i][el.dataset.f] = el.value; renderGoals(s); saveData(); });
-  });
-}
-function removeGoal(i){ const s=getActiveStudent(); s.goals.splice(i,1); renderGoals(s); renderLogDomainOptions(s); renderChartDomainOptions(s); saveData(); }
-function addGoal(){
-  const s = getActiveStudent(); if (!s) return;
-  const input = document.getElementById('newGoalDomain');
-  const domain = input.value.trim();
-  if (!domain){ alert('Isi nama domain/area target dulu.'); return; }
-  const goal = { id: rid(), domain, target:'', strategi:'', status:'belum' };
-  withFreshData(d => { const st = d.students.find(x=>x.id===s.id); if (st) st.goals.push(goal); });
-  s.goals.push(goal);
-  input.value = '';
-  renderGoals(s); renderLogDomainOptions(s); renderChartDomainOptions(s);
-}
-
-// ---------- LOGS ----------
-
-function renderLogDomainOptions(s){
-  const sel = document.getElementById('l-domain');
-  const domains = ['Umum', ...new Set(s.goals.map(g=>g.domain))];
-  sel.innerHTML = domains.map(d=>`<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join('');
-}
-
-async function addLog(){
-  const s = getActiveStudent(); if (!s) return;
-  const tanggal = document.getElementById('l-tanggal').value || new Date().toISOString().slice(0,10);
-  const guru = document.getElementById('l-guru').value;
-  const domain = document.getElementById('l-domain').value;
-  const hasil = document.getElementById('l-hasil').value;
-  const situasi = document.getElementById('l-situasi').value.trim();
-  const perilaku = document.getElementById('l-perilaku').value.trim();
-  const tindakan = document.getElementById('l-tindakan').value.trim();
-  const catatan = document.getElementById('l-catatan').value.trim();
-  if (!situasi && !perilaku){ alert('Isi minimal situasi atau perilaku yang teramati.'); return; }
-  const entry = { id: rid(), studentId: s.id, guru, domain, tanggal, situasi, perilaku, tindakan, catatan, hasil };
-  await withFreshData(d => { d.logs.unshift(entry); });
-  data.logs.unshift(entry);
-  try{ await window.storage.set(PERSONAL_GURU_KEY, guru, false); }catch(e){}
-  ['l-situasi','l-perilaku','l-tindakan','l-catatan'].forEach(id=>document.getElementById(id).value='');
-  renderLogs(s); renderChart();
-}
-function deleteLog(id){
-  if (!confirm('Hapus catatan ini?')) return;
-  withFreshData(d => { d.logs = d.logs.filter(l=>l.id!==id); });
-  data.logs = data.logs.filter(l=>l.id!==id);
-  renderLogs(getActiveStudent()); renderChart();
-}
-function renderLogs(s){
-  const wrap = document.getElementById('logList');
-  const logs = data.logs.filter(l=>l.studentId===s.id);
-  wrap.innerHTML = '';
-  if (!logs.length){ wrap.innerHTML = '<div class="empty">Belum ada catatan observasi untuk murid ini.</div>'; return; }
-  logs.forEach(l=>{
-    const el = document.createElement('div'); el.className = 'log-entry';
-    el.innerHTML = `
-      <div class="log-entry-top">
-        <span class="log-meta">${formatTanggal(l.tanggal)} \u00b7 ${escapeHtml(l.hasil)}<small>${escapeHtml(l.guru||'-')} \u00b7 ${escapeHtml(l.domain||'Umum')}</small></span>
-        <button class="del-link" onclick="deleteLog('${l.id}')">Hapus</button>
-      </div>
-      <dl>
-        ${l.situasi?`<dt>Situasi / pemicu</dt><dd>${escapeHtml(l.situasi)}</dd>`:''}
-        ${l.perilaku?`<dt>Perilaku</dt><dd>${escapeHtml(l.perilaku)}</dd>`:''}
-        ${l.tindakan?`<dt>Tindakan</dt><dd>${escapeHtml(l.tindakan)}</dd>`:''}
-        ${l.catatan?`<dt>Catatan</dt><dd>${escapeHtml(l.catatan)}</dd>`:''}
-      </dl>`;
-    wrap.appendChild(el);
+  wrap.querySelectorAll('.likert-options label').forEach(lbl=>{
+    lbl.addEventListener('click', ()=>{
+      const name = lbl.dataset.name;
+      document.querySelectorAll(`label[data-name="${name}"]`).forEach(l=>l.classList.remove('selected'));
+      lbl.classList.add('selected');
+      lbl.querySelector('input').checked = true;
+    });
   });
 }
 
-// ---------- CHART ----------
-
-function renderChartDomainOptions(s){
-  const sel = document.getElementById('chartDomainFilter');
-  const domains = ['Semua Domain', 'Umum', ...new Set(s.goals.map(g=>g.domain))];
-  const current = sel.value;
-  sel.innerHTML = domains.map(d=>`<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join('');
-  if (domains.includes(current)) sel.value = current;
+function renderBidang(){
+  const wrap = document.getElementById('bidangContainer');
+  bidangOptions.forEach((b,i)=>{
+    const row = document.createElement('div'); row.className = 'check-row';
+    row.innerHTML = `<input type="checkbox" id="bidang${i}" value="${b}"><span>${b}</span>`;
+    wrap.appendChild(row);
+    if (b === 'Olahraga'){
+      const sub = document.createElement('div'); sub.className = 'sub-input';
+      sub.innerHTML = `<input type="text" id="olahragaDetail" placeholder="Sebutkan jenis olahraganya...">`;
+      wrap.appendChild(sub);
+    }
+  });
+  const lainRow = document.createElement('div'); lainRow.className = 'check-row';
+  lainRow.innerHTML = `<input type="checkbox" id="bidangLainYa"><span>Lainnya</span>`;
+  wrap.appendChild(lainRow);
+  const lainSub = document.createElement('div'); lainSub.className = 'sub-input';
+  lainSub.innerHTML = `<input type="text" id="bidangLainDetail" placeholder="Sebutkan...">`;
+  wrap.appendChild(lainSub);
 }
 
-function renderChart(){
-  const s = getActiveStudent();
-  const canvas = document.getElementById('progressChart');
-  const emptyEl = document.getElementById('chartEmpty');
-  if (!s || typeof Chart === 'undefined'){ if (chartInstance){chartInstance.destroy();chartInstance=null;} emptyEl.classList.remove('hidden'); emptyEl.textContent = !s ? 'Pilih murid terlebih dahulu.' : 'Grafik tidak dapat dimuat (periksa koneksi internet).'; return; }
+function val(id){ const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function checked(id){ const el = document.getElementById(id); return el ? el.checked : false; }
+function yaTidak(id){ return checked(id) ? 'Ya' : 'Tidak'; }
 
-  const filter = document.getElementById('chartDomainFilter').value || 'Semua Domain';
-  let logs = data.logs.filter(l => l.studentId === s.id);
-  if (filter !== 'Semua Domain') logs = logs.filter(l => (l.domain || 'Umum') === filter);
-  logs = logs.filter(l => scoreOf(l.hasil) !== null).slice().sort((a,b)=> a.tanggal.localeCompare(b.tanggal));
+function susunRingkasan(){
+  const lines = [];
+  lines.push('*FORMULIR IDENTIFIKASI AWAL PESERTA DIDIK*');
+  lines.push('UPT SD Negeri Tumpang 03 - TA 2026/2027');
+  lines.push('');
+  lines.push('*I. IDENTITAS*');
+  lines.push('Nama: ' + (val('namaAnak') || '-'));
+  lines.push('Kelas: ' + (val('kelas') || '-'));
+  lines.push('Tanggal Lahir: ' + (val('ttl') || '-'));
+  lines.push('Nama Ortu: ' + (val('namaOrtu') || '-'));
+  lines.push('No. WA Ortu: ' + (val('noHpOrtu') || '-'));
+  lines.push('');
+  lines.push('*II. MASSA TUBUH (STATUS GIZI)*');
+  lines.push('Tinggi Badan: ' + (val('tinggi') || '-') + ' cm');
+  lines.push('Berat Badan: ' + (val('berat') || '-') + ' kg');
+  if (val('lingkarKepala')) lines.push('Lingkar Kepala: ' + val('lingkarKepala') + ' cm');
+  lines.push('Alergi makanan: ' + yaTidak('alergiYa') + (checked('alergiYa') && val('alergiDetail') ? ' (' + val('alergiDetail') + ')' : ''));
+  lines.push('Riwayat penyakit khusus: ' + yaTidak('riwayatYa') + (checked('riwayatYa') && val('riwayatDetail') ? ' (' + val('riwayatDetail') + ')' : ''));
+  lines.push('Rutin sarapan: ' + yaTidak('sarapanRutin'));
+  lines.push('');
+  lines.push('*III. SOSIAL-EMOSIONAL & KONSENTRASI BELAJAR*');
+  likertItems.forEach((item, i) => {
+    const checkedInput = document.querySelector(`input[name="${item.id}"]:checked`);
+    lines.push((i+1) + '. ' + item.label + ': ' + (checkedInput ? checkedInput.value : '-'));
+  });
+  lines.push('');
+  lines.push('*IV. BAKAT DAN MINAT*');
+  const bidangTerpilih = [];
+  bidangOptions.forEach((b,i)=>{ if (checked('bidang'+i)) bidangTerpilih.push(b === 'Olahraga' && val('olahragaDetail') ? `Olahraga (${val('olahragaDetail')})` : b); });
+  if (checked('bidangLainYa') && val('bidangLainDetail')) bidangTerpilih.push(val('bidangLainDetail'));
+  lines.push('Bidang minat: ' + (bidangTerpilih.length ? bidangTerpilih.join(', ') : '-'));
+  lines.push('Aktivitas di rumah: ' + (val('aktivitas') || '-'));
+  lines.push('Prestasi: ' + (val('prestasi') || '-'));
+  lines.push('Cita-cita: ' + (val('citaCita') || '-'));
+  lines.push('Harapan orang tua: ' + (val('harapan') || '-'));
+  return lines.join('\\n');
+}
 
-  if (chartInstance){ chartInstance.destroy(); chartInstance = null; }
+function validasi(){
+  const ok = val('namaAnak').length > 0;
+  document.getElementById('namaError').style.display = ok ? 'none' : 'block';
+  if (!ok) document.getElementById('namaAnak').focus();
+  return ok;
+}
 
-  if (logs.length < 2){
-    emptyEl.classList.remove('hidden');
-    emptyEl.textContent = 'Belum cukup data untuk menampilkan grafik. Tambahkan minimal 2 catatan observasi dengan hasil yang diberi skor.';
-    return;
+function kirimWhatsApp(){
+  if (!validasi()) return;
+  const teks = susunRingkasan();
+  const url = 'https://wa.me/' + NOMOR_WA_GURU + '?text=' + encodeURIComponent(teks);
+  window.open(url, '_blank');
+  showStatus('Membuka WhatsApp... jika tidak terbuka otomatis, gunakan tombol "Salin Ringkasan" lalu kirim manual.');
+}
+
+async function salinTeks(){
+  if (!validasi()) return;
+  const teks = susunRingkasan().replace(/\\*/g, '');
+  try{
+    await navigator.clipboard.writeText(teks);
+    showStatus('Ringkasan jawaban berhasil disalin. Anda bisa menempelkannya di WhatsApp, SMS, atau email.');
+  }catch(e){
+    showStatus('Gagal menyalin otomatis. Mohon salin teks secara manual.');
   }
-  emptyEl.classList.add('hidden');
-
-  const labels = logs.map(l => formatTanggal(l.tanggal));
-  const scores = logs.map(l => scoreOf(l.hasil));
-
-  chartInstance = new Chart(canvas.getContext('2d'), {
-    type: 'line',
-    data: { labels, datasets: [{
-      label: filter === 'Semua Domain' ? 'Skor keseluruhan' : filter,
-      data: scores, borderColor: '#2F6F62', backgroundColor: 'rgba(47,111,98,0.12)',
-      tension: 0.25, fill: true, pointRadius: 4, pointBackgroundColor: '#2F6F62', spanGaps: true,
-    }]},
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      scales: { y: { min: 0.5, max: 3.5, ticks: { stepSize: 1, callback: v => ({1:'Belum berhasil',2:'Sebagian berhasil',3:'Berhasil'})[v] || '' } } },
-      plugins: { legend: { display: false } },
-    },
-  });
 }
 
-// ---------- EXCEL EXPORT ----------
-
-function exportExcel(){
-  if (typeof XLSX === 'undefined'){ alert('Modul Excel belum termuat, periksa koneksi internet dan coba lagi.'); return; }
-  const muridRows = data.students.map(s => ({
-    'Nama Murid': s.nama, 'Kelas': s.kelas, 'Tahun Ajaran': s.tahun,
-    'Indikasi Awal': s.indikasi, 'Mulai Diamati': s.mulai,
-  }));
-  const ciriRows = [];
-  data.students.forEach(s => s.ciri.forEach(c => ciriRows.push({
-    'Nama Murid': s.nama, 'Ciri yang Teramati': c.text, 'Status': c.checked ? 'Aktif' : 'Tidak aktif',
-  })));
-  const targetRows = [];
-  data.students.forEach(s => s.goals.forEach(g => targetRows.push({
-    'Nama Murid': s.nama, 'Domain': g.domain, 'Target': g.target, 'Strategi': g.strategi,
-    'Status': statusLabel[g.status] || g.status,
-  })));
-  const logRows = data.logs.map(l => {
-    const s = data.students.find(x => x.id === l.studentId);
-    return {
-      'Nama Murid': s ? s.nama : '(murid dihapus)', 'Tanggal': l.tanggal, 'Guru Pengamat': l.guru,
-      'Domain': l.domain, 'Situasi / Pemicu': l.situasi, 'Perilaku': l.perilaku,
-      'Tindakan': l.tindakan, 'Hasil': l.hasil, 'Catatan': l.catatan,
-    };
-  });
-
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(muridRows), 'Murid');
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(ciriRows), 'Ciri-ciri');
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(targetRows), 'Target & Strategi');
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(logRows), 'Log Observasi');
-  const todayStr = new Date().toISOString().slice(0,10);
-  XLSX.writeFile(wb, `Laporan_Pengamatan_ABK_${todayStr}.xlsx`);
+function showStatus(msg){
+  const el = document.getElementById('statusMsg');
+  el.textContent = msg; el.classList.add('ok');
 }
 
-// ---------- INIT ----------
-
-function renderAll(guruAktif){
-  document.getElementById('l-tanggal').value = new Date().toISOString().slice(0,10);
-  renderTeacherList();
-  if (guruAktif && data.teachers.includes(guruAktif)) document.getElementById('l-guru').value = guruAktif;
-  renderStudentSelector();
-  if (activeStudentId) renderStudentDetail();
-}
-
-loadData();
+renderLikert();
+renderBidang();
 </script>
 </body>
 </html>
